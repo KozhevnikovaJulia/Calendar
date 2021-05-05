@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { FormGroup, TextField, Button, Select, MenuItem } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { addEvent } from '../../../bll/reducer';
 
-export const AddEventForm = React.memo(() => {
+export const AddEventForm = React.memo(props => {
+  const { date } = props;
   const [eventType, setEventType] = useState('');
   const handleChange = e => {
     setEventType(e.target.value);
   };
   const dispatch = useDispatch();
-  const currentDate = useSelector(state => state.app.currentDate);
   const formik = useFormik({
     initialValues: {
       eventName: '',
@@ -33,7 +33,7 @@ export const AddEventForm = React.memo(() => {
     onSubmit: values => {
       dispatch(
         addEvent({
-          date: currentDate,
+          date: date,
           eventType: eventType,
           eventName: values.eventName,
           where: values.where,

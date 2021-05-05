@@ -1,7 +1,15 @@
 .list {
-  min-width: 300px;
+  min-width: 350px;
   min-height: 460px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.event {
+  display: flex;
   justify-content: space-between;
+}
+.eventButtons {
+  display: flex;
 }

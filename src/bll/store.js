@@ -11,7 +11,6 @@ const app = localStorage.getItem('app')
       holidays: [],
       notes: [],
       events: [],
-      currentDate: '',
     };
 const persistedState = { app };
 export const store = createStore(rootReducer, persistedState, applyMiddleware(thunkMiddleware));
