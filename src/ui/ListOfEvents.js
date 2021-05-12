@@ -17,44 +17,45 @@ export const ListOfEvents = props => {
   const events = useSelector(state => state.app.events);
   const currentDateAsString = date.toISOString();
   const dispatch = useDispatch();
+  console.log(holidays);
   return (
     <div>
       <Paper elevation={3}>
         <div className='list'>
           <div className='holidays'>
-            {holidays
-
-              .filter(holiday => holiday.date === currentDateAsString)
-              .map(holiday => {
-                return (
-                  <div>
-                    <div className='event'>
-                      <h3 style={{ color: '#3f51b5' }}> {holiday.eventName}</h3>
-                      <div className='eventButtons'>
-                        <FontAwesomeIcon
-                          onClick={() => {
-                            dispatch(deleteEvent(holiday.id, 'holidays'));
-                          }}
-                          icon={faTrash}
-                          size='2x'
-                          style={{ marginRight: '10px', color: '#3f51b5' }}
-                        />
-                        <FontAwesomeIcon
-                          onClick={() => {
-                            setActiveUpdateModal(true);
-                            setActiveEventId(holiday.id);
-                          }}
-                          icon={faPencilAlt}
-                          size='2x'
-                          style={{ color: '#3f51b5' }}
-                        />
+            {holidays.length &&
+              holidays
+                .filter(holiday => holiday.date === currentDateAsString)
+                .map(holiday => {
+                  return (
+                    <div>
+                      <div className='event'>
+                        <h3 style={{ color: '#3f51b5' }}> {holiday.eventName}</h3>
+                        <div className='eventButtons'>
+                          <FontAwesomeIcon
+                            onClick={() => {
+                              dispatch(deleteEvent(holiday.id, 'holidays'));
+                            }}
+                            icon={faTrash}
+                            size='2x'
+                            style={{ marginRight: '10px', color: '#3f51b5' }}
+                          />
+                          <FontAwesomeIcon
+                            onClick={() => {
+                              setActiveUpdateModal(true);
+                              setActiveEventId(holiday.id);
+                            }}
+                            icon={faPencilAlt}
+                            size='2x'
+                            style={{ color: '#3f51b5' }}
+                          />
+                        </div>
                       </div>
+                      <div> Время: {holiday.inWhatTime}</div>
+                      <div> Место: {holiday.where}</div>
                     </div>
-                    <div> Время: {holiday.inWhatTime}</div>
-                    <div> Место: {holiday.where}</div>
-                  </div>
-                );
-              })}
+                  );
+                })}
           </div>
 
           <div className='events'>
